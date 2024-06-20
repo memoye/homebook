@@ -1,11 +1,19 @@
+import { Suspense } from "react";
 import { NavBar } from "./components/navbar/NavBar";
 import "./layout.scss";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="layout">
-      <NavBar />
-    </div>
+    <Suspense fallback="Loading...">
+      <div className="layout">
+        <NavBar />
+
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </Suspense>
   );
 }
 

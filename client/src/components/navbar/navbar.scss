@@ -1,6 +1,151 @@
+@import "../../responsive.scss";
+
 nav {
   display: flex;
   justify-content: space-between;
-  height: 100px;
   align-items: center;
+  height: 4rem;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 3;
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style-type: none;
+
+      & a:hover {
+        scale: 105%;
+      }
+    }
+
+    .active {
+      color: red;
+    }
+
+    li {
+      @include sm {
+        display: none;
+      }
+    }
+  }
+
+  .right {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    // background-color: hsl(13, 60%, 97%);
+    height: 100%;
+    list-style-type: none;
+
+    li {
+      transition: all 300ms ease;
+    }
+
+    .login {
+      border: 1px solid black;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: hsla(0, 0%, 30%, 0.05);
+      }
+    }
+
+    .signup {
+      --background-opacity: 1;
+
+      background-color: hsl(43, 99%, 66%, var(--background-opacity));
+      border: 1px solid hsl(43, 99%, 66%);
+      border-radius: 2px;
+
+      &:hover {
+        --background-opacity: 0.5;
+      }
+    }
+
+    li {
+      @include sm {
+        display: none;
+      }
+    }
+  }
+
+  ul a {
+    transition: scale 200ms ease-out;
+    display: inline-block;
+    color: inherit;
+    padding: 0.5em 1em;
+  }
+
+  .hamburgerBtn {
+    display: none;
+
+    @include sm {
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      padding: 0.25em;
+      border-radius: 50%;
+      border: none;
+      background-color: black;
+      color: hsl(13, 60%, 97%);
+      aspect-ratio: 1;
+      display: inline-block;
+      z-index: 50;
+      transform: rotate(180deg);
+      transition: transform 200ms ease;
+
+      &.open {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  .mobileNav {
+    list-style-type: none;
+    position: fixed;
+    top: 0;
+    right: -50%;
+    color: hsl(13, 60%, 97%);
+    background-color: hsl(0, 0%, 0%);
+    height: 100dvh;
+    width: 50%;
+    transition: right 500ms ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 40;
+
+    &.open {
+      right: 0;
+    }
+
+    // @include sm {
+    //   a {
+    //     display: initial;
+    //   }
+    // }
+  }
+
+  .backdrop {
+    background-color: transparent;
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    display: none;
+
+    @include sm {
+      &.open {
+        display: block;
+      }
+    }
+  }
 }

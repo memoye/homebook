@@ -1,9 +1,12 @@
+@import "../../responsive.scss";
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   color: black;
+  width: fit-content;
+  width: -moz-fit-content;
 
   .icon {
     width: 26px;
@@ -13,9 +16,22 @@
   .text {
     text-transform: uppercase;
     font-weight: bolder;
+    border-block: 1px solid black;
+
+    @include md {
+      display: none;
+    }
+
+    @include sm {
+      display: initial;
+    }
 
     span {
       font-weight: 300;
     }
+  }
+
+  &:hover > .text {
+    background-color: rgba(193, 193, 193, 0.233);
   }
 }
