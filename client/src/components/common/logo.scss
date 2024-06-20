@@ -1,0 +1,21 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: black;
+
+  .icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .text {
+    text-transform: uppercase;
+    font-weight: bolder;
+
+    span {
+      font-weight: 300;
+    }
+  }
+}
