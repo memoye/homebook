@@ -2,24 +2,25 @@
 
 nav {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   height: 4rem;
 
   .left {
     display: flex;
+    flex: 3;
     align-items: center;
     gap: 2rem;
-    flex: 3;
 
     ul {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style-type: none;
 
       & a:hover {
-        scale: 105%;
+        transform: scale(105%);
       }
     }
 
@@ -35,12 +36,12 @@ nav {
   }
 
   .right {
-    flex: 2;
     display: flex;
-    align-items: center;
+    flex: 2;
     justify-content: flex-end;
+    align-items: center;
     gap: 1rem;
-    // background-color: hsl(13, 60%, 97%);
+    background-color: hsl(var(--color-background-secondary));
     height: 100%;
     list-style-type: none;
 
@@ -59,70 +60,82 @@ nav {
 
     .signup {
       --background-opacity: 1;
-
-      background-color: hsl(43, 99%, 66%, var(--background-opacity));
-      border: 1px solid hsl(43, 99%, 66%);
+      margin-right: 1rem;
+      border: 1px solid hsl(var(--color-primary));
       border-radius: 2px;
+
+      background-color: hsl(var(--color-primary), var(--background-opacity));
+      color: hsl(var(--color-primary-foreground));
 
       &:hover {
         --background-opacity: 0.5;
       }
     }
 
-    li {
-      @include sm {
-        display: none;
-      }
+    // li {
+    @include sm {
+      display: none;
     }
+    // }
+
+    // @include sm {
+    //   transform: translateX(10px);
+    // }
   }
 
   ul a {
-    transition: scale 200ms ease-out;
     display: inline-block;
-    color: inherit;
+    transition: transform 200ms ease-out;
     padding: 0.5em 1em;
+    color: inherit;
   }
 
   .hamburgerBtn {
     display: none;
 
     @include sm {
-      margin: 0;
-      padding: 0;
-      line-height: 0;
-      padding: 0.25em;
-      border-radius: 50%;
-      border: none;
-      background-color: black;
-      color: hsl(13, 60%, 97%);
-      aspect-ratio: 1;
       display: inline-block;
-      z-index: 50;
+      position: absolute;
+      top: 50%;
+      right: 0;
       transform: rotate(180deg);
+      transform: translateY(-50%);
+      z-index: 50;
       transition: transform 200ms ease;
+      margin: 0;
+      margin-right: 20px;
+      border: none;
+      border-radius: 50%;
+      background-color: black;
+      padding: 0;
+      padding: 0.25em;
+      aspect-ratio: 1;
+      color: hsl(13, 60%, 97%);
+      line-height: 0;
 
       &.open {
         transform: rotate(0);
+        transform: translateY(-50%);
       }
     }
   }
 
   .mobileNav {
-    list-style-type: none;
+    display: flex;
     position: fixed;
     top: 0;
     right: -50%;
-    color: hsl(13, 60%, 97%);
-    background-color: hsl(0, 0%, 0%);
-    height: 100dvh;
-    width: 50%;
-    transition: right 500ms ease;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     z-index: 40;
+    transition: right 500ms ease;
+    background-color: hsl(0, 0%, 0%);
+    width: 50%;
+    height: 100dvh;
+    color: hsl(13, 60%, 97%);
+    list-style-type: none;
 
     &.open {
       right: 0;
@@ -136,11 +149,11 @@ nav {
   }
 
   .backdrop {
-    background-color: transparent;
-    position: fixed;
-    inset: 0;
-    z-index: 35;
     display: none;
+    position: fixed;
+    z-index: 35;
+    inset: 0;
+    background-color: transparent;
 
     @include sm {
       &.open {

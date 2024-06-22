@@ -9,4 +9,5 @@ export const paths = {
     { name: "Login", href: "/login" },
     { name: "Sign Up", href: "/signup" },
   ],
+  others: [{ name: "Properties", href: "/properties" }],
 };

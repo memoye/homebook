@@ -1,19 +1,24 @@
 import { Suspense } from "react";
 import { NavBar } from "./components/navbar/NavBar";
 import "./layout.scss";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import Fallback from "./components/fallback/Fallback";
 
 function App() {
-  return (
-    <Suspense fallback="Loading...">
-      <div className="layout">
-        <NavBar />
+  const { pathname } = useLocation();
 
-        <main>
+  return (
+    <div className="layout">
+      <header>
+        <NavBar />
+      </header>
+
+      <main>
+        <Suspense fallback={<Fallback forPath={pathname} />}>
           <Outlet />
-        </main>
-      </div>
-    </Suspense>
+        </Suspense>
+      </main>
+    </div>
   );
 }
 

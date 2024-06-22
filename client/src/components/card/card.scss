@@ -1,0 +1,113 @@
+.card {
+  display: flex;
+  gap: 20px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .imageContainer {
+    display: block;
+    flex: 1;
+    height: 200px;
+
+    img {
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .textContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+
+    .title {
+      text-wrap: pretty;
+      transition: color 300ms ease;
+      color: hsl(0, 0%, 27%);
+      font-weight: 500;
+      font-size: 1.25rem;
+      line-height: normal;
+
+      &:hover {
+        color: hsl(0, 0%, 13%);
+        text-decoration: underline;
+      }
+    }
+
+    .address {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      color: hsl(0, 0%, 53%);
+      font-size: 0.85rem;
+      line-height: 1;
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 5px;
+      background-color: hsl(var(--color-primary), 0.1);
+      padding: 0.25em;
+      padding-right: 0.4em;
+      width: max-content;
+      color: hsl(0, 0%, 30%);
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1;
+      font-family: monospace;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 10px;
+
+      .featuresWrapper {
+        display: flex;
+        gap: 10px;
+        font-size: 0.85rem;
+
+        .feature {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background-color: hsl(0, 0%, 95%);
+          padding: 0.5em 1em;
+        }
+      }
+
+      .actionsWrapper {
+        display: flex;
+        gap: 10px;
+
+        .action {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: color 200ms ease;
+          cursor: pointer;
+          border: 1px solid hsl(0, 0%, 95%);
+          background-color: transparent;
+          padding: 0.15em 0.25em;
+          color: hsl(0, 0%, 25%);
+          line-height: 0;
+
+          &:hover {
+            color: hsl(0, 0%, 0%);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.propertiesPage {
+  display: flex;
+  height: 100%;
+
+  .listContainer {
+    flex: 3;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      box-sizing: border-box;
+      padding-right: 50px;
+      padding-bottom: 3rem;
+      height: 100%;
+      overflow-y: scroll;
+    }
+  }
+
+  .mapContainer {
+    flex: 2;
+    background-color: hsl(var(--color-background-secondary));
+  }
+}

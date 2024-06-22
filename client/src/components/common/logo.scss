@@ -1,12 +1,12 @@
 @import "../../responsive.scss";
 .logo {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 5px;
-  color: black;
-  width: fit-content;
   width: -moz-fit-content;
+  width: fit-content;
+  color: black;
 
   .icon {
     width: 26px;
@@ -14,9 +14,9 @@
   }
 
   .text {
-    text-transform: uppercase;
-    font-weight: bolder;
     border-block: 1px solid black;
+    font-weight: bolder;
+    text-transform: uppercase;
 
     @include md {
       display: none;
