@@ -6,7 +6,7 @@ import {
   XIcon,
 } from "lucide-react";
 import { useSliderContext } from "@/context/sliderContext";
-import { useRef, useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 
 type SliderProps = {
   images: string[];
@@ -50,84 +50,109 @@ export function Slider({ images, title }: SliderProps) {
     setAnim("fadeIn");
   }
 
+  function handleKeyPress(e: KeyboardEvent<HTMLDivElement>) {
+    if (!["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"].includes(e.key))
+      return;
+
+    switch (e.key) {
+      case "ArrowUp":
+        goToNext();
+        break;
+      case "ArrowRight":
+        goToNext();
+        break;
+      case "ArrowDown":
+        goToPrev();
+        break;
+      case "ArrowLeft":
+        goToPrev();
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
-    <>
-      <div className="slider">
-        <div className="focussedImg" key={focussed}>
-          <img src={images[focussed]} />
-          <button type="button" title="Fullscreen" onClick={fullscreenOn}>
-            <FullscreenIcon />
-          </button>
-        </div>
-        <div className="otherImgs">
-          {images
-            .filter((img) => img !== images[focussed])
-            .map((image, i) => (
-              <button
-                key={image + i}
-                type="button"
-                onClick={focusImage(images.indexOf(image))}
-              >
-                <span className="sr-only">
-                  {title} inage thumbnail {i}
-                </span>
-                <img src={image} alt={title + " " + (i + 1)} />
-              </button>
-            ))}
-        </div>
+    <div
+      className="slider"
+      onKeyDown={handleKeyPress}
+      autoFocus={true}
+      tabIndex={-1}
+    >
+      <div className="focussedImg" key={focussed}>
+        <img src={images[focussed]} alt={title} />
+        <button type="button" title="Fullscreen" onClick={fullscreenOn}>
+          <FullscreenIcon />
+        </button>
+      </div>
+      <div className="otherImgs">
+        {images
+          .filter((img) => img !== images[focussed])
+          .map((image, i) => (
+            <button
+              key={image + i}
+              type="button"
+              onClick={focusImage(images.indexOf(image))}
+            >
+              <span className="sr-only">
+                {title} image thumbnail {i}
+              </span>
+              <img src={image} alt={title + " " + (i + 1)} />
+            </button>
+          ))}
+      </div>
 
-        {fullscreen && (
-          <div className="fullscreenSlider" style={{ paddingRight: 0 }}>
-            <div className={"innerWrapper"}>
-              <button
-                type="button"
-                onClick={fullscreenOff}
-                title="Exit Fullscreen"
-              >
-                <XIcon />
-              </button>
+      {fullscreen && (
+        <div className="fullscreenSlider" style={{ paddingRight: 0 }}>
+          <div className={"innerWrapper"}>
+            <button
+              type="button"
+              onClick={fullscreenOff}
+              title="Exit Fullscreen"
+            >
+              <XIcon />
+            </button>
 
-              <div className="imgContainer">
-                <img
-                  ref={fullscreenFocussedRef}
-                  src={images[focussed]}
-                  alt={title + " " + focussed}
-                  className={anim}
-                  key={focussed}
-                />
-                <div className="thumbnailsContainer">
-                  <div className="thumbnailsWrapper">
-                    {images.map((img, i) => (
-                      <button
-                        className={images[focussed] === img ? "active" : ""}
-                        key={img + 1}
-                        type="button"
-                        onClick={() => jumpTo(img)}
-                      >
-                        <span className="sr-only">
-                          Jump to image {images.indexOf(img)} of {images.length}
-                        </span>
-                        <img src={img} alt={title + " " + (i + 1)} />
-                      </button>
-                    ))}
-                  </div>
+            <div className="imgContainer">
+              <img
+                ref={fullscreenFocussedRef}
+                src={images[focussed]}
+                alt={title + " " + focussed}
+                className={anim}
+                key={focussed}
+              />
+              <div className="thumbnailsContainer">
+                <div className="thumbnailsWrapper">
+                  {images.map((img, i) => (
+                    <button
+                      className={images[focussed] === img ? "active" : ""}
+                      key={img + 1}
+                      type="button"
+                      onClick={() => jumpTo(img)}
+                    >
+                      <span className="sr-only">
+                        Jump to image {images.indexOf(img)} of {images.length}
+                      </span>
+                      <img src={img} alt={title + " " + (i + 1)} />
+                    </button>
+                  ))}
                 </div>
               </div>
+            </div>
 
-              <div className="imgNavContainer" key={focussed}>
-                <button onClick={goToPrev} type="button">
-                  <span className="sr-only">Previous Image</span>
-                  <ChevronLeftIcon />
-                </button>
-                <button onClick={goToNext} type="button">
-                  <span className="sr-only">Next Image</span>
-                  <ChevronRightIcon />
-                </button>
-              </div>
+            <div className="imgNavContainer" key={focussed}>
+              <button onClick={goToPrev} type="button">
+                <span className="sr-only">Previous Image</span>
+                <ChevronLeftIcon />
+              </button>
+              <button onClick={goToNext} type="button">
+                <span className="sr-only">Next Image</span>
+                <ChevronRightIcon />
+              </button>
             </div>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
