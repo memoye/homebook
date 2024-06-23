@@ -5,6 +5,7 @@ nav {
   position: relative;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
   height: 4rem;
 
   .left {
@@ -72,10 +73,10 @@ nav {
       }
     }
 
-    // li {
     @include sm {
       display: none;
     }
+    // li {
     // }
 
     // @include sm {
@@ -90,75 +91,84 @@ nav {
     color: inherit;
   }
 
-  .hamburgerBtn {
-    display: none;
-
-    @include sm {
-      display: inline-block;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: rotate(180deg);
-      transform: translateY(-50%);
-      z-index: 50;
-      transition: transform 200ms ease;
-      margin: 0;
-      margin-right: 20px;
-      border: none;
-      border-radius: 50%;
-      background-color: black;
-      padding: 0;
-      padding: 0.25em;
-      aspect-ratio: 1;
-      color: hsl(13, 60%, 97%);
-      line-height: 0;
-
-      &.open {
-        transform: rotate(0);
-        transform: translateY(-50%);
-      }
-    }
-  }
-
-  .mobileNav {
-    display: flex;
-    position: fixed;
+  &.desktopNav {
+    position: sticky;
     top: 0;
-    right: -50%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    z-index: 40;
-    transition: right 500ms ease;
-    background-color: hsl(0, 0%, 0%);
-    width: 50%;
-    height: 100dvh;
+  }
+}
+
+.hamburgerBtn {
+  display: none;
+
+  @include sm {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: rotate(180deg);
+    transform: translateY(-50%);
+    z-index: 500;
+    transition: transform 200ms ease;
+    margin: 0;
+    margin-right: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: black;
+    padding: 0;
+    padding: 0.25em;
+    aspect-ratio: 1;
     color: hsl(13, 60%, 97%);
-    list-style-type: none;
+    line-height: 0;
 
     &.open {
-      right: 0;
+      transform: rotate(0);
+      transform: translateY(-50%);
     }
+  }
+}
 
-    // @include sm {
-    //   a {
-    //     display: initial;
-    //   }
-    // }
+.mobileNav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 40;
+  transition: right 500ms ease;
+  background-color: hsl(0, 0%, 0%);
+  width: 50%;
+  height: 100dvh;
+  color: hsl(13, 60%, 97%);
+  list-style-type: none;
+
+  &.open {
+    right: 0;
   }
 
-  .backdrop {
-    display: none;
-    position: fixed;
-    z-index: 35;
-    inset: 0;
-    background-color: transparent;
+  @include md {
+    display: flex;
+  }
 
-    @include sm {
-      &.open {
-        display: block;
-      }
+  // @include sm {
+  //   a {
+  //     display: initial;
+  //   }
+  // }
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  z-index: 35;
+  inset: 0;
+  background-color: transparent;
+
+  @include sm {
+    &.open {
+      display: block;
     }
   }
 }

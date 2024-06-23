@@ -1,7 +1,8 @@
 import "./propertiesPage.scss";
-import { propertiesList as data } from "../../../lib/dummyData";
+import { propertiesList as data } from "@/lib/dummyData";
 import Filter from "@/components/filter/Filter";
 import Card from "@/components/card/Card";
+import { Map } from "@/components/map/Map";
 
 export default function PropertiesPage() {
   return (
@@ -14,7 +15,9 @@ export default function PropertiesPage() {
           ))}
         </div>
       </div>
-      <div className="mapContainer">map container</div>
+      <div className="mapContainer">
+        <Map items={data} />
+      </div>
     </div>
   );
 }

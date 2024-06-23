@@ -1,5 +1,5 @@
-import { Property } from "@/lib/definitions";
 import "./card.scss";
+import { Property } from "@/lib/definitions";
 import { Link } from "react-router-dom";
 import {
   BathIcon,

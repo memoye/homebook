@@ -19,7 +19,7 @@ export const NavBar = () => {
   }, [pathname]);
 
   return (
-    <nav>
+    <nav className="desktopNav">
       <div className="left">
         <Link to="/">
           <Logo full />
@@ -50,7 +50,6 @@ export const NavBar = () => {
         {mobileNavOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
         <span className="sr-only">Close Navigation Menu</span>
       </button>
-
       <ul className={`mobileNav ${mobileNavOpen && "open"}`}>
         {[...left, ...right].map(({ name, href }) => (
           <li key={name}>

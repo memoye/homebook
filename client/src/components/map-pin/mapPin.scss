@@ -1,0 +1,44 @@
+.mapPin {
+  max-width: 200px;
+}
+.popupContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 80px;
+
+  img {
+    flex: 1;
+    border-radius: 5px;
+    aspect-ratio: 1/1;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .textContainer {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    justify-content: space-between;
+
+    a {
+      -webkit-box-orient: vertical;
+      line-clamp: 2;
+      display: -webkit-box;
+      margin-bottom: 10px;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      color: hsl(0, 0%, 5%);
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+        text-overflow: ellipsis;
+      }
+    }
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
+}

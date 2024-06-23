@@ -1,0 +1,112 @@
+@import "../../../responsive.scss";
+
+.propertyPage {
+  display: flex;
+  height: 100%;
+
+  .details {
+    flex: 3;
+
+    .wrapper {
+      padding-right: 50px;
+
+      &:has(.fullscreenActive) {
+        padding-right: 0px;
+      }
+
+      @include sm {
+        padding-right: 20px;
+
+        &.fullscreenActive {
+          padding-right: 0;
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+
+        .top {
+          display: flex;
+          justify-content: space-between;
+
+          .post {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 7px;
+
+            h1 {
+              margin-block: 0.25rem;
+              font-weight: 400;
+
+              @include sm {
+                font-size: 1.5rem;
+              }
+            }
+
+            .address {
+              display: inline-flex;
+              align-items: center;
+              gap: 5px;
+              color: hsl(0, 0%, 53%);
+              font-size: 0.85rem;
+
+              svg {
+                width: 1rem;
+              }
+            }
+
+            .price {
+              border-radius: 5px;
+              background-color: hsl(var(--color-primary), 0.1);
+              padding: 0.25em;
+              padding-right: 0.4em;
+              width: max-content;
+              color: hsl(0, 0%, 30%);
+              font-weight: 700;
+              font-size: 1rem;
+              line-height: 1;
+              font-family: monospace;
+            }
+          }
+
+          .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            border-radius: 10px;
+            background-color: hsl(var(--color-primary), 0.3);
+            padding: 0.5em 1.25em;
+            height: fit-content;
+            font-weight: 400;
+
+            img {
+              border-radius: 50%;
+              width: 50px;
+              height: 50px;
+              object-fit: cover;
+            }
+          }
+        }
+
+        .bottom {
+          text-wrap: pretty;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .features {
+    flex: 2;
+    background-color: #fcf5f3;
+
+    .wrapper {
+      padding: 0 20px;
+    }
+  }
+}
