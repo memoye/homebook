@@ -14,6 +14,20 @@ export const NavBar = () => {
     setMobileNavOpen((prev) => !prev);
   }
 
+  const user = true;
+
+  useEffect(() => {
+    if (mobileNavOpen) {
+      window.document.body.style.overflowY = "hidden";
+    } else {
+      window.document.body.style.overflowY = "auto";
+    }
+
+    return () => {
+      window.document.body.style.overflowY = "auto";
+    };
+  }, [mobileNavOpen]);
+
   useEffect(() => {
     setMobileNavOpen(false);
   }, [pathname]);
@@ -35,11 +49,25 @@ export const NavBar = () => {
       </div>
 
       <ul className="right">
-        {right.map(({ name, href }) => (
-          <li key={name} className={href.replace("/", "")}>
-            <NavLink to={href}>{name}</NavLink>
-          </li>
-        ))}
+        {user ? (
+          <div className="user">
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=male"
+              alt="a man"
+            />
+            <span>{"John Doe"}</span>
+            <Link className="profile" to={"/profile"}>
+              <span className="notification">3</span>
+              <span>Profile</span>
+            </Link>
+          </div>
+        ) : (
+          right.map(({ name, href }) => (
+            <li key={name} className={href.replace("/", "")}>
+              <NavLink to={href}>{name}</NavLink>
+            </li>
+          ))
+        )}
       </ul>
 
       <button
@@ -49,13 +77,48 @@ export const NavBar = () => {
       >
         {mobileNavOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
         <span className="sr-only">Close Navigation Menu</span>
+        <span className={`mobileNotification ${mobileNavOpen ? "hide" : ""}`}>
+          3
+        </span>
       </button>
       <ul className={`mobileNav ${mobileNavOpen && "open"}`}>
-        {[...left, ...right].map(({ name, href }) => (
-          <li key={name}>
-            <NavLink to={href}>{name}</NavLink>
+        {user
+          ? [...left, { name: "Profile", href: "/profile" }].map(
+              ({ name, href }) => (
+                <li key={name}>
+                  <NavLink to={href}>{name}</NavLink>
+                  {href === "/profile" && (
+                    <span
+                      style={{
+                        background: "red",
+                        fontSize: "0.75rem",
+                        borderRadius: "50%",
+                        padding: "0.05em",
+                        width: "1rem",
+                        height: "1rem",
+                        display: "inline-flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      3
+                    </span>
+                  )}
+                </li>
+              )
+            )
+          : [...left, ...right].map(({ name, href }) => (
+              <li key={name}>
+                <NavLink to={href}>{name}</NavLink>
+              </li>
+            ))}
+        {user && (
+          <li>
+            <NavLink to={"#"} className="logoutBtn">
+              Logout
+            </NavLink>
           </li>
-        ))}
+        )}
       </ul>
 
       <button

@@ -6,11 +6,11 @@ import { Property } from "@/lib/definitions";
 import { MapPin } from "../map-pin/MapPin";
 
 interface MapProps {
-  items: Property[];
+  items: Partial<Property>[];
 }
 
 export function Map({ items }: MapProps) {
-  const position: LatLngTuple = [6.5244, 3.3792];
+  const position: LatLngTuple = [items[0].latitude!, items[0].longitude!];
 
   return (
     <MapContainer

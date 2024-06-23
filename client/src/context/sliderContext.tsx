@@ -24,7 +24,7 @@ export const SliderContextProvider = ({
   children: ReactNode;
 }) => {
   const [focussed, setFocussed] = useState(0);
-  const [fullscreen, setFullscreen] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
 
   function focusImage(idx: number) {
     return () => setFocussed(idx);

@@ -233,11 +233,18 @@
       position: fixed;
       justify-content: space-between;
       inset: 0;
+
       button {
         border: none;
         background-color: hsl(0, 0%, 0%, var(--bg-opacity));
         padding: 2em;
         color: white;
+
+        svg {
+          stroke-width: 5px;
+          width: 40px;
+          height: 40px;
+        }
       }
     }
   }

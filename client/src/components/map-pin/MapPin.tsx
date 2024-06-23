@@ -8,11 +8,11 @@ import { Marker, Popup } from "react-leaflet";
 // }
 
 type MapPinProps = {
-  item: Property;
+  item: Partial<Property>;
 };
 
 export function MapPin({ item }: MapPinProps) {
-  const position: LatLngTuple = [item.latitude, item.longitude];
+  const position: LatLngTuple = [item.latitude!, item.longitude!];
 
   return (
     <Marker position={position}>
@@ -21,9 +21,9 @@ export function MapPin({ item }: MapPinProps) {
           <div className="popupContainer">
             <img src={item.img} alt={item.title} />
             <div className="textContainer">
-              <Link to={`${item.id}`}>{item.title}</Link>
+              <Link to={`/properties/${item.id}`}>{item.title}</Link>
               <span>
-                {item.bathroom} bathroom{item.bathroom > 1 ? "s" : ""}
+                {item.bathroom} bathroom{item.bathroom! > 1 ? "s" : ""}
               </span>
               <b>$ {item.price}</b>
             </div>
